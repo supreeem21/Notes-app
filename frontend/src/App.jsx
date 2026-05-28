@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import { Outlet } from "react-router-dom";
 
 const App = () => {
   return (
-    <div>App</div>
-  )
-}
+    <>
+    <button className="btn btn-primary">Btn</button>
+      <Outlet />
+    </>
+  );
+};
 
-export default App
+export default App;
