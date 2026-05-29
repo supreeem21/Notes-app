@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import NavBar from "../components/NavBar.jsx";
 import RateLimitedUI from "../components/RateLimitedUI.jsx";
 import NoteCard from "../components/NoteCard.jsx";
-import axios from "axios";
 import { Axis3D } from "lucide-react";
 import { toast } from "react-hot-toast";
+import api from "../lib/axios.js";
 
 const HomePage = () => {
   const [isRateLimited, setIsRateLimited] = useState(false);
@@ -13,9 +13,9 @@ const HomePage = () => {
 
   const getAllNotes = async () => {
     try {
-      const res = await axios.get("http://localhost:5001/api/notes");
+      const res = await api.get("/notes");
       setNotes(res.data);
-      // setIsRateLimited(false);
+      setIsRateLimited(false);
     } catch (error) {
       console.log("Error getting all notes");
       if (error.response.status === 429) {
@@ -44,7 +44,7 @@ const HomePage = () => {
         {notes.length > 0 && !isRateLimited && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {notes.map((note, index) => (
-              <NoteCard key={index} note={note}/>
+              <NoteCard key={index} note={note} />
             ))}
           </div>
         )}
