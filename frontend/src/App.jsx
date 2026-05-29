@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 const App = () => {
 
   return (
-    <div data-theme="forest" className="h-screen">
+    <div className="relative h-full w-full" data-theme="forest">
       <Outlet />
     </div>
   );
